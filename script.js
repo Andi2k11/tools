@@ -113,6 +113,48 @@ resetBtn.addEventListener('click', ()=>{
   localStorage.setItem('math_score', score);
 });
 
+// --- Mini calculator handlers ---
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest && e.target.closest('.calc-btn, .calc-action');
+  if(!btn) return;
+  const val = btn.getAttribute('data-val');
+  const action = btn.getAttribute('data-action');
+  if(val){
+    // insert at caret or append
+    insertAtCursor(answerInput, val.trim());
+    answerInput.focus();
+    return;
+  }
+  if(action){
+    if(action === 'back'){
+      // remove last char
+      answerInput.value = answerInput.value.slice(0, -1);
+      answerInput.focus();
+    } else if(action === 'clear'){
+      answerInput.value = '';
+      answerInput.focus();
+    } else if(action === 'enter'){
+      checkAnswer();
+    } else if(action === 'slash'){
+      insertAtCursor(answerInput, '/');
+      answerInput.focus();
+    } else if(action === 'dot'){
+      insertAtCursor(answerInput, '.');
+      answerInput.focus();
+    }
+  }
+});
+
+function insertAtCursor(input, text){
+  // works for input elements
+  const start = input.selectionStart || 0;
+  const end = input.selectionEnd || 0;
+  const v = input.value;
+  input.value = v.slice(0, start) + text + v.slice(end);
+  const pos = start + text.length;
+  input.setSelectionRange(pos, pos);
+}
+
 // Enter-tangent skickar formuläret
 document.getElementById('answer-form').addEventListener('submit', (e)=>{
   e.preventDefault();

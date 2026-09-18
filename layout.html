@@ -60,6 +60,38 @@
 									<button id="next-btn" type="button" class="btn btn-outline-secondary d-none">Nästa</button>
 								</div>
 
+								<!-- Miniräknare för touch / alternativ input -->
+								<div class="col-12 mt-3">
+									<div id="mini-calc" class="d-flex justify-content-center">
+										<div class="calc-grid shadow-sm rounded-3 p-2 bg-white">
+											<div class="calc-row">
+												<button class="calc-btn" data-val="7">7</button>
+												<button class="calc-btn" data-val="8">8</button>
+												<button class="calc-btn" data-val="9">9</button>
+												<button class="calc-action" data-action="back">⌫</button>
+											</div>
+											<div class="calc-row">
+												<button class="calc-btn" data-val="4">4</button>
+												<button class="calc-btn" data-val="5">5</button>
+												<button class="calc-btn" data-val="6">6</button>
+												<button class="calc-action" data-action="slash">/</button>
+											</div>
+											<div class="calc-row">
+												<button class="calc-btn" data-val="1">1</button>
+												<button class="calc-btn" data-val="2">2</button>
+												<button class="calc-btn" data-val="3">3</button>
+												<button class="calc-btn" data-val="0">0</button>
+											</div>
+											<div class="calc-row">
+												<button class="calc-btn" data-val="," aria-label="komma"> , </button>
+												<button class="calc-action" data-action="clear">C</button>
+												<button class="calc-action" data-action="dot">.</button>
+												<button class="calc-action" data-action="enter">✔</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
 								<div class="col-12 mt-3">
 									<div id="feedback" role="status" aria-live="polite"></div>
 								</div>
