@@ -185,5 +185,12 @@ function initExercise({ questionHTML, correctAnswer, numeric=false, tolerance=0.
   resetForNext();
 }
 
+// Ensure KaTeX renders any inline math after DOM is ready
+document.addEventListener('DOMContentLoaded', ()=>{
+  if(window.renderMathInElement){
+    try{ renderMathInElement(document.getElementById('task-content')); }catch(e){console.warn('KaTeX render error', e)}
+  }
+});
+
 // Exempel: om du vill initiera via JS för en sida.
 // initExercise({ questionHTML: 'Beräkna \\\((\\\frac{1}{2}+\\\frac{1}{3})\\\).', correctAnswer: '5/6', numeric: true, tolerance: 0.0001 });

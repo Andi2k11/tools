@@ -8,8 +8,12 @@
 html,body{height:100%;}
 body{background:var(--bg);font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;color:#0f172a;overflow:hidden;}
 
+/* Fixed header/footer heights to calculate remaining viewport without page scroll */
+header{height:56px}
+footer{height:48px}
+
 /* Hela layouten ska använda viewporthöjd; använd flex för att centrera och undvika scroll */
-main{display:flex;flex-direction:column;min-height:calc(100vh - 88px); /* adjust if header/footer height changes */}
+main{display:flex;flex-direction:column;min-height:calc(100vh - 104px);}
 .container-fluid.h-100{flex:1;display:flex;flex-direction:column}
 .row.g-0.h-100{flex:1;display:flex;flex-direction:column}
 
