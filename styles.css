@@ -40,19 +40,33 @@ main{display:flex;flex-direction:column;min-height:calc(100vh - 104px);}
 .card{scrollbar-width:thin}
 
 /* Miniräknare */
-.calc-grid{width:280px;max-width:100%;display:flex;flex-direction:column;gap:8px}
+.calc-grid{width:clamp(220px,18vw,320px);max-width:100%;display:flex;flex-direction:column;gap:8px}
 .calc-row{display:flex;gap:8px}
-.calc-btn,.calc-action{flex:1;padding:12px 10px;border-radius:8px;border:1px solid #e6eef2;background:#fff;font-size:1.05rem}
-.calc-btn{background:#f4f7f8}
+.calc-btn,.calc-action{flex:1;padding:12px 10px;border-radius:10px;border:0;background:#5a4548;font-size:1.05rem;color:#fff}
+.calc-btn{background:#6f595c}
 .calc-btn:active,.calc-action:active{transform:translateY(1px)}
-.calc-action{background:var(--accent);color:white;border-color:rgba(108,139,164,0.2)}
-.operator{background:#e0f0f4;color:#0b3944;border-color:transparent}
+.calc-action{background:#f49a2a;color:#fff}
+.operator{background:#f49a2a;color:#fff}
 
 @media (max-width:576px){
   .calc-grid{width:220px}
   .form-control-lg{height:2.6rem}
   .calc-btn,.calc-action{padding:10px}
 }
+
+  /* Calculator shell to mimic image: dark rounded body with green display */
+  .calc-grid{
+    background:linear-gradient(180deg,#3b2e2f,#2f2425);
+    padding:12px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  }
+  .calc-display{
+    background:#b7d07a; /* muted green */
+    border-radius:10px;padding:10px;margin-bottom:8px;color:#203018;font-weight:700;font-family:Roboto, 'Helvetica Neue', Arial, sans-serif;text-align:right;letter-spacing:2px;
+  }
+
+  /* Ensure main fits viewport exactly so nothing is scrolled out */
+  main, .container-fluid, .row{height:calc(100vh - 104px)}
+  .card{max-height:100%;overflow:auto}
 
 /* Calculator-style display for the input field */
 #user-answer{
