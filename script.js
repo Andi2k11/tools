@@ -184,6 +184,20 @@ function evaluateExpressionIntoInput(){
       const out = Number.isInteger(result) ? String(result) : String(Number(result.toFixed(8)));
       answerInput.value = out;
       updateCalcDisplay();
+      // Auto-check: if evaluated result matches correct answer, mark correct
+      // Try numeric compare first
+      const correctNum = parseFractionOrNumber(CORRECT_ANSWER_RAW);
+      const userNum = parseFractionOrNumber(out);
+      if(correctNum !== null && userNum !== null){
+        if(Math.abs(userNum - correctNum) <= ACCEPT_TOLERANCE){
+          checkAnswer();
+        }
+      } else {
+        // fallback to string match
+        if(out.replace(/\s+/g,'').toLowerCase() === String(CORRECT_ANSWER_RAW).replace(/\s+/g,'').toLowerCase()){
+          checkAnswer();
+        }
+      }
     }
   }catch(err){
     // ignore evaluation errors

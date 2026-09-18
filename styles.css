@@ -48,6 +48,14 @@ main{display:flex;flex-direction:column;min-height:calc(100vh - 104px);}
 .calc-action{background:#f49a2a;color:#fff}
 .operator{background:#f49a2a;color:#fff}
 
+/* Button press animation */
+.calc-btn,.calc-action{transition:transform 0.08s ease, box-shadow 0.08s ease}
+.calc-btn:active,.calc-action:active{transform:translateY(3px);box-shadow:inset 0 2px 6px rgba(0,0,0,0.25)}
+
+/* Slightly increase operator size and spacing to match reference */
+.operator{font-weight:700;padding-left:8px;padding-right:8px}
+.calc-grid .calc-row{gap:10px}
+
 @media (max-width:576px){
   .calc-grid{width:220px}
   .form-control-lg{height:2.6rem}
