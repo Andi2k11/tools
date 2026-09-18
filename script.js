@@ -135,6 +135,10 @@ document.addEventListener('click', (e)=>{
       answerInput.focus();
     } else if(action === 'enter'){
       checkAnswer();
+    } else if(action === 'sqrt'){
+      // insert square-root symbol with opening paren
+      insertAtCursor(answerInput, '√(');
+      answerInput.focus();
     } else if(action === 'slash'){
       insertAtCursor(answerInput, '/');
       answerInput.focus();
