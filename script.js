@@ -14,6 +14,13 @@ const resetBtn = document.getElementById('reset-score');
 
 let score = Number(localStorage.getItem('math_score') || 0);
 scoreEl.textContent = score;
+const calcDisplay = document.getElementById('calc-display');
+
+function updateCalcDisplay(){
+  if(!calcDisplay) return;
+  const v = answerInput.value || '';
+  calcDisplay.textContent = v === '' ? '0' : v;
+}
 
 function normalizeAnswer(str){
   if(!str) return '';
@@ -130,9 +137,11 @@ document.addEventListener('click', (e)=>{
       // remove last char
       answerInput.value = answerInput.value.slice(0, -1);
       answerInput.focus();
+      updateCalcDisplay();
     } else if(action === 'clear'){
       answerInput.value = '';
       answerInput.focus();
+      updateCalcDisplay();
     } else if(action === 'enter'){
       checkAnswer();
     } else if(action === 'sqrt'){
@@ -174,6 +183,7 @@ function evaluateExpressionIntoInput(){
       // format result: if integer, show integer, else round moderately
       const out = Number.isInteger(result) ? String(result) : String(Number(result.toFixed(8)));
       answerInput.value = out;
+      updateCalcDisplay();
     }
   }catch(err){
     // ignore evaluation errors
@@ -189,6 +199,7 @@ function insertAtCursor(input, text){
   input.value = v.slice(0, start) + text + v.slice(end);
   const pos = start + text.length;
   input.setSelectionRange(pos, pos);
+  updateCalcDisplay();
 }
 
 // Enter-tangent skickar formuläret
@@ -202,6 +213,7 @@ answerInput.addEventListener('keydown', (e)=>{
     checkAnswer();
   }
 });
+answerInput.addEventListener('input', updateCalcDisplay);
 
 // Rendera KaTeX (om det behövs på init - auto-render script tar hand om det)
 // Om du vill sätta frågetext och rätt svar via JS kan du ex erbjuda en init-funktion:
