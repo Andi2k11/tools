@@ -1,0 +1,41 @@
+:root{
+  --accent:#6C8BA4; /* mjuk blågrå enligt önskemål */
+  --bg:#fbfdfe;
+  --muted:#6b7280;
+  --radius:12px;
+}
+
+html,body{height:100%;}
+body{background:var(--bg);font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;color:#0f172a;}
+
+/* Hela layouten ska använda viewporthöjd */
+main .row.h-100{height:calc(100vh - 112px);} /* header+footer approx 112px; justerbart */
+
+/* Paneler */
+#task{background:transparent;}
+#answer{background:transparent;}
+
+/* Card styling */
+#task-box, #answer .card{border-radius:var(--radius);}
+
+/* Uppgiftsrubrik/tex */
+.task-content{font-size:1.45rem;}
+
+/* Responsiv: på små skärmar, gör panelerna staplade och mindre padding */
+@media (max-width: 768px){
+  .task-content{font-size:1.15rem;}
+  main .row.h-100{height:auto;} /* låt innehållet växa på väldigt små skärmar (touchvänligt) */
+  #task, #answer{padding-top:1rem;padding-bottom:1rem;}
+}
+
+/* Feedback */
+#feedback{min-height:1.6rem;}
+.feedback-correct{color:var(--accent); font-weight:600;}
+.feedback-wrong{color:#c53030; font-weight:600;}
+
+/* Touch / stora knappar */
+.btn{border-radius:10px;}
+.form-control-lg{height:3.25rem;}
+
+/* Fokus tydligt */
+:focus{outline:3px solid rgba(108,139,164,0.18);outline-offset:2px;}
