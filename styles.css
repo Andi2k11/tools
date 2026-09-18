@@ -40,15 +40,18 @@ main{display:flex;flex-direction:column;min-height:calc(100vh - 104px);}
 .card{scrollbar-width:thin}
 
 /* Miniräknare */
-.calc-grid{width:260px;max-width:100%;display:flex;flex-direction:column;gap:6px}
-.calc-row{display:flex;gap:6px}
-.calc-btn,.calc-action{flex:1;padding:10px 8px;border-radius:8px;border:1px solid #e6eef2;background:#f8fafb;font-size:1.05rem}
+.calc-grid{width:280px;max-width:100%;display:flex;flex-direction:column;gap:8px}
+.calc-row{display:flex;gap:8px}
+.calc-btn,.calc-action{flex:1;padding:12px 10px;border-radius:8px;border:1px solid #e6eef2;background:#fff;font-size:1.05rem}
+.calc-btn{background:#f4f7f8}
 .calc-btn:active,.calc-action:active{transform:translateY(1px)}
 .calc-action{background:var(--accent);color:white;border-color:rgba(108,139,164,0.2)}
+.operator{background:#e0f0f4;color:#0b3944;border-color:transparent}
 
 @media (max-width:576px){
   .calc-grid{width:220px}
   .form-control-lg{height:2.6rem}
+  .calc-btn,.calc-action{padding:10px}
 }
 
 /* Feedback */

@@ -149,6 +149,38 @@ document.addEventListener('click', (e)=>{
   }
 });
 
+// Handle operator buttons and evaluate action
+document.addEventListener('click', (e)=>{
+  const opBtn = e.target.closest && e.target.closest('.operator');
+  if(opBtn){
+    const op = opBtn.getAttribute('data-op');
+    insertAtCursor(answerInput, op);
+    answerInput.focus();
+  }
+  const evalBtn = e.target.closest && e.target.closest('[data-action="eval"]');
+  if(evalBtn){
+    evaluateExpressionIntoInput();
+  }
+});
+
+function evaluateExpressionIntoInput(){
+  let expr = answerInput.value.replace(/×/g, '*').replace(/÷/g, '/').replace(/,/, '.');
+  // Replace unicode sqrt notation √(x) with Math.sqrt(x)
+  expr = expr.replace(/√\(/g, 'Math.sqrt(');
+  try{
+    // eslint-disable-next-line no-new-func
+    const result = Function('return ('+expr+')')();
+    if(result !== undefined){
+      // format result: if integer, show integer, else round moderately
+      const out = Number.isInteger(result) ? String(result) : String(Number(result.toFixed(8)));
+      answerInput.value = out;
+    }
+  }catch(err){
+    // ignore evaluation errors
+    console.warn('Calc eval error', err);
+  }
+}
+
 function insertAtCursor(input, text){
   // works for input elements
   const start = input.selectionStart || 0;
