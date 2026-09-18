@@ -76,6 +76,10 @@ main{display:flex;flex-direction:column;min-height:calc(100vh - 104px);}
   main, .container-fluid, .row{height:calc(100vh - 104px)}
   .card{max-height:100%;overflow:auto}
 
+  /* Ensure card background remains visible and input sits above calculator */
+  .card{background:#fff}
+  #user-answer{display:block;width:100%;z-index:2;position:relative}
+
 /* Calculator-style display for the input field */
 #user-answer{
   background: linear-gradient(180deg,#111827 0%, #0b1220 100%);
